@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - aws s3 cp s3://your-thesis-statement/secret.json .
+  pre_build:
+    commands:
+      - chmod +x create_deployment.sh
+  build:
+    commands:
+      - ./create_deployment.sh
+artifacts:
+  files:
+    - "**/*"
