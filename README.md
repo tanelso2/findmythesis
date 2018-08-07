@@ -11,6 +11,8 @@ After Docker is installed and running, you should be able to build the code usin
 docker build -t your-thesis-statement:latest .
 ```
 
+If this build script fails because you don't have a secret.json file, run `touch secret.json` to create an empty file. If you want a real one to test with, contact the owner of this repo (but don't expect a timely reply)
+
 ## Running
 To run, run the `run.sh` script.
 
