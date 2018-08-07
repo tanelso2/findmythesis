@@ -1,9 +1,16 @@
-FROM python:2.7
+FROM python:3.7
 
 # Add sample application
-ADD application.py /tmp/application.py
+ADD *.py /opt/application/
+ADD requirements.txt /
+ADD templates/ /opt/application/templates/
+ADD secret.json /
 
-EXPOSE 8000
+RUN pip install --upgrade pip
+RUN pip install -r /requirements.txt
+
+EXPOSE 5000
 
 # Run it
-ENTRYPOINT ["python", "/tmp/application.py"]
+ENV FLASK_APP /opt/application/app.py
+ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
