@@ -1,4 +1,21 @@
 <!doctype html>
-<h1>
-{{ thesis }}
-</h1>
+<html>
+<head>
+<title>Your thesis statement is...</title>
+<style>
+div.thesis {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</style>
+</head>
+<body>
+    <div class="thesis">
+        <h1>
+        {{ thesis }}
+        </h1>
+    </div>
+</body>
+</html>
