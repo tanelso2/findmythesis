@@ -2,7 +2,9 @@
 
 Uses a google spreadsheet that my friend maintains as its source of phrases
 
-# Getting Started 
+View it at: [findmythesis.com](findmythesis.com)
+
+# Getting Started
 First, install Docker using the instructions in their [docs](https://docs.docker.com/install/)
 
 ## Building
