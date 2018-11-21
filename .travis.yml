@@ -21,14 +21,17 @@ before_install:
 script:
 - docker build -t $REPO_NAME:latest .
 before_deploy:
-- scripts/install_helm.sh
+- wget https://raw.githubusercontent.com/tanelso2/deployment_scripts/master/deploy.sh
+- wget https://raw.githubusercontent.com/tanelso2/deployment_scripts/master/install_helm.sh
+- chmod +x install_helm.sh deploy.sh
+- ./install_helm.sh
 cache:
   directories:
   - "$HOME/google-cloud-sdk"
 deploy:
 - provider: script
   skip_cleanup: true
-  script: scripts/deploy.sh
+  script: ./deploy.sh
   on:
     repo: tanelso2/your_thesis_statement
     branch: master
