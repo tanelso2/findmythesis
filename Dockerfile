@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.7-alpine
 
 # Install dependencies
 ADD requirements.txt /
