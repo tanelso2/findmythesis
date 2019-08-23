@@ -2,7 +2,7 @@
 
 Uses a google spreadsheet that my friend maintains as its source of phrases
 
-View it at: [findmythesis.com](findmythesis.com)
+View it at: [https://findmythesis.com](https://findmythesis.com)
 
 # Getting Started
 First, install Docker using the instructions in their [docs](https://docs.docker.com/install/)
