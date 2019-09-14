@@ -38,7 +38,7 @@ async def get_thesis_topic():
     return f'{choices[0]}: {choices[1]} {choices[2]} & {choices[3]} {choices[4]}'
 
 
-FETCH_PERIOD_SEC = 10
+FETCH_PERIOD_SEC = 60 * 10  # 10 minutes
 
 
 async def fetch_loop():
