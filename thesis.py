@@ -1,5 +1,3 @@
-from cachetools.func import ttl_cache
-import gspread
 import gspread_asyncio
 from oauth2client.service_account import ServiceAccountCredentials
 import random
