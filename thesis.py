@@ -35,7 +35,7 @@ async def get_thesis_topic():
         cached_values = await get_thesis_values()
     choices = [random.choice(x) for x in cached_values]
     # Idea: maybe move this into the index.html template?
-    return f'{choices[0]}: {choices[1]} {choices[2]} & {choices[3]} {choices[4]}'
+    return f'{choices[0]}: {choices[1]} {choices[2]} & {choices[3]} {choices[4]}'.title()
 
 
 FETCH_PERIOD_SEC = 60 * 10  # 10 minutes
