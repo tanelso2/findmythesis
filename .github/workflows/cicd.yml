@@ -17,6 +17,19 @@ jobs:
     - run: echo "${GSPREAD_ACCESS_JSON}" > secret.json
       shell: bash
       env:
-        SSH_KEY: ${{secrets.GSPREAD_ACCESS_JSON}}
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:gh-$(date +%s)
+        GSPREAD_ACCESS_JSON: ${{secrets.GSPREAD_ACCESS_JSON}}
+    - run: echo "${GCR_SERVICE_ACCOUNT}" > service-account.json
+      shell: bash
+      env:
+        GCR_SERVICE_ACCOUNT: ${{secrets.GCR_SERVICE_ACCOUNT}}
+    - run: curl https://sdk.cloud.google.com | bash > /dev/null
+      env:
+        CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+        REPO_NAME: your-thesis-statement
+        GCR_REPO: gcr.io/kubernetes-221218
+    - run: wget https://raw.githubusercontent.com/tanelso2/deployment_scripts/master/push_image_to_gcr.sh
+    - run: ./push_image_to_gcr.sh
+      env:
+        CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+        REPO_NAME: your-thesis-statement
+        GCR_REPO: gcr.io/kubernetes-221218
