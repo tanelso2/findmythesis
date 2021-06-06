@@ -1,8 +1,9 @@
+# TODO: Cleanup env variable definitions
 name: Docker Image CI
 
 on:
   push:
-    branches: [ tnelson/cicd ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
