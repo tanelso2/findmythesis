@@ -14,7 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: echo "${GSPREAD_ACCESS_JSON}" > secret.json
+      shell: bash
+      env:
+        SSH_KEY: ${{secrets.GSPREAD_ACCESS_JSON}}
     - name: Build the Docker image
-      run:
-      - echo "${GSPREAD_ACCESS_JSON}" > secret.json
-      - docker build . --file Dockerfile --tag my-image-name:gh-$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:gh-$(date +%s)
