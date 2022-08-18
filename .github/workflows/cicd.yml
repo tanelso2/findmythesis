@@ -3,7 +3,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ actions-test ]
   pull_request:
     branches: [ master ]
 
@@ -23,11 +23,12 @@ jobs:
       shell: bash
       env:
         GCR_SERVICE_ACCOUNT: ${{secrets.GCR_SERVICE_ACCOUNT}}
-    - run: curl https://sdk.cloud.google.com | bash > /dev/null
-      env:
-        CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
-        REPO_NAME: your-thesis-statement
-        GCR_REPO: gcr.io/kubernetes-221218
+    - uses: tanelso2/deployment_scripts/actions/install_gcloud@master
+    # - run: curl https://sdk.cloud.google.com | bash > /dev/null
+    #   env:
+    #     CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+    #     REPO_NAME: your-thesis-statement
+    #     GCR_REPO: gcr.io/kubernetes-221218
     - run: wget https://raw.githubusercontent.com/tanelso2/deployment_scripts/master/push_image_to_gcr.sh
     - run: chmod +x push_image_to_gcr.sh
     - run: ./push_image_to_gcr.sh
