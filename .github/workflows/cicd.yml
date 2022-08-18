@@ -29,10 +29,13 @@ jobs:
     #     CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
     #     REPO_NAME: your-thesis-statement
     #     GCR_REPO: gcr.io/kubernetes-221218
-    - run: wget https://raw.githubusercontent.com/tanelso2/deployment_scripts/master/push_image_to_gcr.sh
-    - run: chmod +x push_image_to_gcr.sh
-    - run: ./push_image_to_gcr.sh
-      env:
-        CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
-        REPO_NAME: your-thesis-statement
-        GCR_REPO: gcr.io/kubernetes-221218
+    - uses: tanelso2/deployment_scripts/actions/build_and_push_to_gcr@master
+      with:
+        repoName: your-thesis-statement
+    # - run: wget https://raw.githubusercontent.com/tanelso2/deployment_scripts/master/push_image_to_gcr.sh
+    # - run: chmod +x push_image_to_gcr.sh
+    # - run: ./push_image_to_gcr.sh
+    #   env:
+    #     CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
+    #     REPO_NAME: your-thesis-statement
+    #     GCR_REPO: gcr.io/kubernetes-221218
