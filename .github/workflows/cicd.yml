@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -22,9 +22,9 @@ jobs:
       with:
         repoName: findmythesis
         serviceAccount: ${{secrets.GCR_SERVICE_ACCOUNT}}
-      if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     - uses: tanelso2/deployment_scripts/actions/update_tcm@main
-      if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
       with:
         repoName: findmythesis
         tcmKey: ${{secrets.TCM_KEY}}
