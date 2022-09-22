@@ -15,7 +15,11 @@ jobs:
       shell: bash
       env:
         GSPREAD_ACCESS_JSON: ${{secrets.GSPREAD_ACCESS_JSON}}
-    - uses: tanelso2/deployment_scripts/actions/build_and_push_to_gcr@master
+    - uses: tanelso2/deployment_scripts/actions/build_image@main
+      with:
+        repoName: your-thesis-statement
+    - uses: tanelso2/deployment_scripts/actions/build_and_push_to_gcr@main
       with:
         repoName: your-thesis-statement
         serviceAccount: ${{secrets.GCR_SERVICE_ACCOUNT}}
+      if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
