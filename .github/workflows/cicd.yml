@@ -28,4 +28,4 @@ jobs:
       with:
         repoName: findmythesis
         tcmKey: ${{secrets.TCM_KEY}}
-        tcmAddr: tcm-bender.thomasnelson.me
+        tcmAddr: tcm.thomasnelson.me
