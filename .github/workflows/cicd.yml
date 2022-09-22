@@ -23,3 +23,9 @@ jobs:
         repoName: your-thesis-statement
         serviceAccount: ${{secrets.GCR_SERVICE_ACCOUNT}}
       if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    - uses: tanelso2/deployment_scripts/actions/update_tcm@main
+      if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      with:
+        repoName: your-thesis-statement
+        tcmKey: ${{secrets.TCM_KEY}}
+        tcmAddr: tcm-bender.thomasnelson.me
