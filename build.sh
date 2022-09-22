@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t your-thesis-statement:latest .
+docker build -t findmythesis:latest .
