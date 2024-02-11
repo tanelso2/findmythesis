@@ -14,4 +14,4 @@ EXPOSE 5000
 
 # Run it
 WORKDIR /opt/application
-CMD gunicorn --bind 0.0.0.0:5000 --worker-class aiohttp.worker.GunicornWebWorker app:app
+CMD gunicorn --bind 0.0.0.0:5000 --worker-class aiohttp.worker.GunicornWebWorker --workers 2 app:app
