@@ -19,6 +19,7 @@ jobs:
       with:
         repoName: findmythesis
     - uses: tanelso2/deployment_scripts/actions/build_and_push_to_gcr@main
+      id: gcr
       with:
         repoName: findmythesis
         serviceAccount: ${{secrets.GCR_SERVICE_ACCOUNT}}
@@ -29,3 +30,4 @@ jobs:
         repoName: findmythesis
         tcmKey: ${{secrets.TCM_KEY}}
         tcmAddr: tcm.thomasnelson.me
+        imageTag: ${{steps.gcr.outputs.tag}}
