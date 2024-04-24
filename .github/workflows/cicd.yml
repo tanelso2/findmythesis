@@ -1,4 +1,7 @@
 name: Docker Image CI
+permissions:
+  id-token: write
+  contents: read
 
 on:
   push:
@@ -16,18 +19,19 @@ jobs:
       env:
         GSPREAD_ACCESS_JSON: ${{secrets.GSPREAD_ACCESS_JSON}}
     - uses: tanelso2/deployment_scripts/actions/build_image@main
+      id: build
       with:
         repoName: findmythesis
-    - uses: tanelso2/deployment_scripts/actions/build_and_push_to_gcr@main
-      id: gcr
-      with:
-        repoName: findmythesis
-        serviceAccount: ${{secrets.GCR_SERVICE_ACCOUNT}}
+    - uses: tanelso2/deployment_scripts/actions/push_to_ecr@main
       if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+      id: ecr
+      with:
+        repoName: findmythesis
+        version: ${{steps.build.outputs.version}}
     - uses: tanelso2/deployment_scripts/actions/update_tcm@main
       if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
       with:
         repoName: findmythesis
         tcmKey: ${{secrets.TCM_KEY}}
         tcmAddr: tcm.thomasnelson.me
-        imageTag: ${{steps.gcr.outputs.tag}}
+        imageTag: ${{steps.ecr.outputs.tag}}
